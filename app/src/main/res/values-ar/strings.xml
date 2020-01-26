@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">MovieMvvm</string>
-    <string name="message_loading">Loading....</string>
+    <string name="message_loading">جارى التحميل...</string>
 </resources>
