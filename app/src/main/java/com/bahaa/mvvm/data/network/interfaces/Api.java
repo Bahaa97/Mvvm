@@ -1,4 +1,4 @@
-package com.bahaa.mvvm.network.interfaces;
+package com.bahaa.mvvm.data.network.interfaces;
 
 
 

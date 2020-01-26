@@ -1,4 +1,4 @@
-package com.bahaa.mvvm.network;
+package com.bahaa.mvvm.data.network;
 
 import android.content.Context;
 import android.util.Log;

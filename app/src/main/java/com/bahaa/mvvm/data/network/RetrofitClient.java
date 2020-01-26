@@ -1,8 +1,8 @@
-package com.bahaa.mvvm.network;
+package com.bahaa.mvvm.data.network;
 
 
 import com.bahaa.mvvm.MyApplication;
-import com.bahaa.mvvm.network.interfaces.Api;
+import com.bahaa.mvvm.data.network.interfaces.Api;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
