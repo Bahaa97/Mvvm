@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="homeViewModle"
+            type="com.bahaa.mvvm.ui.fragment.home.HomeViewModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txtMovies"
+                android:layout_width="wrap_content"
+                android:text="@string/movies"
+                android:textSize="28sp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/hacen_maghreb_lt"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtTopRated"
+                android:layout_width="wrap_content"
+                android:text="@string/top_rated"
+                android:textSize="18sp"
+                android:textColor="@{homeViewModle.isTopRated? @color/colorPrimary : @color/black}"
+                android:onClick="@{() -> homeViewModle.onTopRatedClicked()}"
+                android:fontFamily="@font/hacen_maghreb_lt"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtPopular"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="@string/popular"
+                android:textSize="18sp"
+                android:textColor="@{homeViewModle.isPopular? @color/colorPrimary : @color/black}"
+                android:fontFamily="@font/hacen_maghreb_lt"
+                android:onClick="@{() -> homeViewModle.onPopularClicked()}"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtLatest"
+                android:layout_width="wrap_content"
+                android:text="@string/latest"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textColor="@{homeViewModle.isLatest? @color/colorPrimary : @color/black}"
+                android:fontFamily="@font/hacen_maghreb_lt"
+                android:onClick="@{() -> homeViewModle.onLatestClicked()}"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txtUpComing"
+                android:layout_width="wrap_content"
+                android:text="@string/up_comping"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:textSize="18sp"
+                android:textColor="@{homeViewModle.isUpComing? @color/colorPrimary : @color/black}"
+                android:fontFamily="@font/hacen_maghreb_lt"
+                android:onClick="@{() -> homeViewModle.onUpComingClicked()}"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMovies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_movie"/>
+    </LinearLayout>
+</layout>

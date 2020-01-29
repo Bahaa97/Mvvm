@@ -3,22 +3,21 @@ package com.bahaa.mvvm.data.network;
 import android.content.Context;
 import android.util.Log;
 
+import com.bahaa.mvvm.ui.activities.base.BaseActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class NetworkInterceptor implements Interceptor {
 
-    /*
-     * Step 1: We pass the context instance here,
-     * since we need to get the ConnectivityStatus
-     * to check if there is internet.
-     * */
     private Context context;
     private NetworkEvent networkEvent;
 
@@ -28,22 +27,20 @@ public class NetworkInterceptor implements Interceptor {
     }
 
     @Override
-    public Response intercept(Chain chain) {
+    public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 
-        /*
-         * Step 2: We check if there is internet
-         * available in the device. If not, pass
-         * the networkState as NO_INTERNET.
-         * */
-
         if (!ConnectivityStatus.isConnected(context)) {
+            BaseActivity.getInstance().hideProgressDialog();
             networkEvent.publish(NetworkState.NO_INTERNET);
-            Log.e("SSS", "NO FUCKING NET");
+            Log.d("NETWORK", "code : " + request.body().toString()+ " " + request.url());
         } else {
             try {
                 Response response = chain.proceed(request);
-                Log.e("SSS", "code : " + response.code() + " " + request.url());
+//                Log.d("NETWORK", "////////////////////////////////////////////////");
+//                Log.d("NETWORK", "code : " + response.code() + "  " + request.url());
+//                Log.d("NETWORK", "Response : " + response.body().string());
+                BaseActivity.getInstance().hideProgressDialog();
                 switch (response.code()) {
                     case 401:
                         networkEvent.publish(NetworkState.UNAUTHORISED);
@@ -68,7 +65,7 @@ public class NetworkInterceptor implements Interceptor {
                             jsonObject = new JSONObject (response.body().string());
                             errorMessage403 = jsonObject.optJSONArray("error").getString(0);
                         } catch (JSONException e) {
-                            Log.e("SSS", e.getMessage());
+                            Log.e("NETWORK", e.getMessage());
                         }
                         if (jsonObject != null) {
                             handle400(errorMessage403, jsonObject);
@@ -78,7 +75,7 @@ public class NetworkInterceptor implements Interceptor {
                 return response;
 
             } catch (IOException e) {
-                Log.e("SSS", e.getMessage());
+                Log.e("NETWORK", e.getMessage());
                 networkEvent.publish(NetworkState.NO_RESPONSE);
             }
         }
@@ -95,7 +92,6 @@ public class NetworkInterceptor implements Interceptor {
                 networkEvent.publish(NetworkState.UNAUTHORISED);
                 break;
             default:
-//                AppUtils.saveInSharedPreference(MyApplication.getContext(), "error", jsonObject.toString());
                 networkEvent.publish(NetworkState.BAD_REQUEST);
         }
     }

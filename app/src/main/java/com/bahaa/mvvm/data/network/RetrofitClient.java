@@ -3,6 +3,7 @@ package com.bahaa.mvvm.data.network;
 
 import com.bahaa.mvvm.MyApplication;
 import com.bahaa.mvvm.data.network.interfaces.Api;
+import com.bahaa.mvvm.ui.activities.base.BaseActivity;
 import com.google.gson.Gson;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -17,12 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static final String BASE_URL = "https://kfo.sa/";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/movie/";
     public static Retrofit retrofit = null;
     public static OkHttpClient okHttpClient = null;
     static Gson gson;
 
     public static Api webService() {
+        BaseActivity.getInstance().showProgressDialog();
         if (retrofit == null) {
             gson = new Gson();
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

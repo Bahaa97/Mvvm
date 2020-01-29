@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navHome">
+
+    <fragment
+        android:id="@+id/navHome"
+        android:name="com.bahaa.mvvm.ui.fragment.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navHome_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navFavorite"
+        android:name="com.bahaa.mvvm.ui.fragment.favorite.FavoriteFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/navSearch"
+        android:name="com.bahaa.mvvm.ui.fragment.search.SearchFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/offlineFragment"
+        android:name="com.bahaa.mvvm.ui.fragment.offline.OfflineFragment"
+        android:label="OfflineFragment" >
+        <action
+            android:id="@+id/action_offlineFragment_to_navHome"
+            app:destination="@id/navHome"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.bahaa.mvvm.ui.fragment.splash.SplashFragment"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_navHome"
+            app:destination="@id/navHome"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.bahaa.mvvm.ui.fragment.movieDetails.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" />
+</navigation>

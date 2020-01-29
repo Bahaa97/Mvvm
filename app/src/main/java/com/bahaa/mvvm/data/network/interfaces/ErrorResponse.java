@@ -3,6 +3,7 @@ package com.bahaa.mvvm.data.network.interfaces;
 import org.json.JSONObject;
 
 public interface ErrorResponse {
+
     void onAlreadyLoggedIn();
     void onNoInternet();
     void onNotAuthorized();

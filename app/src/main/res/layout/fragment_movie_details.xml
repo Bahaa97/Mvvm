@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="DetailsViewModel"
+            type="com.bahaa.mvvm.ui.fragment.movieDetails.MovieDetailsViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.fragment.movieDetails.MovieDetailsFragment">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_180sdp">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                tools:imageUrl="@{DetailsViewModel.imageObservable}"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:background="@drawable/bg_primary_dark"
+                android:layout_height="match_parent"/>
+            <ImageButton
+                android:layout_width="@dimen/_32sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:background="@color/transparent"
+                android:tint="@color/white"
+                android:onClick="@{() -> DetailsViewModel.onBackPressed()}"
+                android:layout_height="@dimen/_32sdp"/>
+
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:textColor="@color/white"
+                android:text="@{DetailsViewModel.nameObservable}"
+                android:textSize="18sp"
+                android:fontFamily="@font/hacen_maghreb"
+                android:layout_alignParentBottom="true"
+                android:layout_height="@dimen/_42sdp"/>
+        </RelativeLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hacen_maghreb"
+                        android:text="Over View"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:minLines="3"
+                        android:text="@{DetailsViewModel.overViewObservable}"
+                        android:textColor="@color/colorPrimary" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_40sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:minLines="3"
+                            android:text="Vote Average"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end|center_vertical"
+                            android:minLines="3"
+                            android:text="@{DetailsViewModel.voteAverageObservable}"
+                            android:textColor="@color/colorPrimary" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_40sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:minLines="3"
+                            android:text="Vote Count"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end|center_vertical"
+                            android:minLines="3"
+                            android:text="@{DetailsViewModel.voteCountObservable}"
+                            android:textColor="@color/colorPrimary" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_40sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|center_vertical"
+                            android:minLines="3"
+                            android:text="Release Date"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end|center_vertical"
+                            android:minLines="3"
+                            android:text="@{DetailsViewModel.releaseDateObservable}"
+                            android:textColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerMovies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>
