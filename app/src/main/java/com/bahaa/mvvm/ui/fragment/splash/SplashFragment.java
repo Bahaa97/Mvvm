@@ -24,7 +24,7 @@ public class SplashFragment extends BaseFragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
+                navigate(R.id.action_splashFragment_to_navHome);
             }
         },3000);
         return view.getRoot();

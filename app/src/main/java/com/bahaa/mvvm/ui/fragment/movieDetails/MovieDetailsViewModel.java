@@ -1,5 +1,6 @@
 package com.bahaa.mvvm.ui.fragment.movieDetails;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -22,7 +23,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MovieDetailsViewModel extends ViewModel {
-    private CompositeDisposable disposables = new CompositeDisposable();
     private MovieDetails movie;
     private String id;
     public ObservableField<String> imageObservable;
@@ -47,8 +47,9 @@ public class MovieDetailsViewModel extends ViewModel {
         getMovieRelated();
     }
 
+    @SuppressLint("CheckResult")
     void getMovieDetails(){
-        Disposable disposable = RetrofitClient.webService().getMovieDetails(id, AppTools.Network.TOKEN)
+       RetrofitClient.webService().getMovieDetails(id, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -57,10 +58,10 @@ public class MovieDetailsViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        disposables.add(disposable);
     }
+    @SuppressLint("CheckResult")
     void getMovieRelated(){
-        Disposable disposable = RetrofitClient.webService().getRelated(id, AppTools.Network.TOKEN)
+        RetrofitClient.webService().getRelated(id, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -68,7 +69,6 @@ public class MovieDetailsViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        disposables.add(disposable);
     }
 
     private void updataUI() {
@@ -88,7 +88,6 @@ public class MovieDetailsViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        disposables.clear();
     }
 
     @BindingAdapter("imageUrl")

@@ -106,34 +106,6 @@ public class BaseActivity extends AppCompatActivity implements ErrorResponse {
         }
     }
 
-    public GridLayoutManager initVerticalRV(RecyclerView recyclerView, int spanCount, int space) {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(space, spanCount, true));
-        recyclerView.setNestedScrollingEnabled(false);
-        return gridLayoutManager;
-    }
-
-    public void showToast(String text) {
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-    }
-
-
-    public GridLayoutManager initHorizontalRV(RecyclerView recyclerView, int spanCount) {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, spanCount, RecyclerView.HORIZONTAL, false);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(10, spanCount, false));
-        recyclerView.setNestedScrollingEnabled(false);
-        return gridLayoutManager;
-    }
-
-    public LinearLayoutManager initVerticalRVLinear(RecyclerView recyclerView, int spanCount) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        // recyclerView.addItemDecoration(new SpacesItemDecoration(10, spanCount, false));
-        recyclerView.setNestedScrollingEnabled(false);
-        return linearLayoutManager;
-    }
 
     @Override
     public void onBackPressed() {
@@ -290,6 +262,7 @@ public class BaseActivity extends AppCompatActivity implements ErrorResponse {
 
     public void navigateWithBundle(View view, Bundle bundle, int actionId) {
         Navigation.findNavController(view).navigate(actionId, bundle);
+
     }
     @Override
     protected void onResume() {

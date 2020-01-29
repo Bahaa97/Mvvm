@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navHome">
+    app:startDestination="@+id/splashFragment">
 
     <fragment
         android:id="@+id/navHome"
@@ -50,11 +50,13 @@
         <action
             android:id="@+id/action_splashFragment_to_navHome"
             app:destination="@id/navHome"
-            app:enterAnim="@anim/enter_from_left"
-            app:exitAnim="@anim/exit_to_right"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/nav_default_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_up"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down"
+            app:popUpTo="@+id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"

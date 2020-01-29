@@ -18,6 +18,7 @@ import com.bahaa.mvvm.models.Movie;
 import com.bahaa.mvvm.ui.fragment.adapter.movieAdapter.MovieAdapter;
 import com.bahaa.mvvm.ui.fragment.base.BaseFragment;
 import com.bahaa.mvvm.util.AppTools;
+import com.bahaa.mvvm.util.AppUtils;
 
 import java.util.List;
 
@@ -54,14 +55,16 @@ public class MovieDetailsFragment extends BaseFragment implements MovieAdapter.O
 
 
     private void initRecycler() {
-        movieAdapter = new MovieAdapter(this);
+        movieAdapter = new MovieAdapter(this,R.layout.item_movie_gride);
         fragmentMovieDetailsBinding.setDetailsViewModel(movieDetailsViewModel);
-        initHorizontalRV(fragmentMovieDetailsBinding.recyclerMovies,1);
+        AppUtils.initHorizontalRV(getContext(),fragmentMovieDetailsBinding.recyclerMovies,1);
         fragmentMovieDetailsBinding.recyclerMovies.setAdapter(movieAdapter);
     }
 
     @Override
     public void onMovieClickListener(Movie movie) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("id",movie.getId().toString());
+        navigateWithBundle(fragmentMovieDetailsBinding.getRoot(),bundle,R.id.movieDetailsFragment);
     }
 }

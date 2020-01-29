@@ -1,5 +1,6 @@
 package com.bahaa.mvvm.ui.fragment.home;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import androidx.databinding.ObservableField;
@@ -19,7 +20,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel {
 
-    private CompositeDisposable mDisposables = new CompositeDisposable();
     MutableLiveData<List<Movie>> moviesResponseMutableLiveData;
     public ObservableField<Boolean> isTopRated;
     public ObservableField<Boolean> isPopular;
@@ -83,8 +83,9 @@ public class HomeViewModel extends ViewModel {
     }
 
 
+    @SuppressLint("CheckResult")
     void getTopRated() {
-        Disposable disposable = RetrofitClient.webService().getMovies(AppTools.Network.TOP_RATED, AppTools.Network.TOKEN)
+        RetrofitClient.webService().getMovies(AppTools.Network.TOP_RATED, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -93,11 +94,11 @@ public class HomeViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        mDisposables.add(disposable);
     }
 
+    @SuppressLint("CheckResult")
     void getPopular() {
-        Disposable disposable = RetrofitClient.webService().getMovies(AppTools.Network.POPULAR, AppTools.Network.TOKEN)
+        RetrofitClient.webService().getMovies(AppTools.Network.POPULAR, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -106,12 +107,12 @@ public class HomeViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        mDisposables.add(disposable);
 
     }
 
+    @SuppressLint("CheckResult")
     void getLatest() {
-        Disposable disposable = RetrofitClient.webService().getMovies(AppTools.Network.LATEST, AppTools.Network.TOKEN)
+        RetrofitClient.webService().getMovies(AppTools.Network.LATEST, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -120,11 +121,12 @@ public class HomeViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        mDisposables.add(disposable);
 
     }
+
+    @SuppressLint("CheckResult")
     void getUpComing() {
-        Disposable disposable = RetrofitClient.webService().getMovies(AppTools.Network.UP_COMING, AppTools.Network.TOKEN)
+        RetrofitClient.webService().getMovies(AppTools.Network.UP_COMING, AppTools.Network.TOKEN)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
@@ -133,13 +135,11 @@ public class HomeViewModel extends ViewModel {
                 }, throwable -> {
                     Log.e("NETWORK ERROR", throwable.getMessage());
                 });
-        mDisposables.add(disposable);
 
     }
 
     protected void onCleared() {
         super.onCleared();
-        mDisposables.clear();
     }
 
 

@@ -16,6 +16,7 @@ import com.bahaa.mvvm.databinding.FragmentHomeBinding;
 import com.bahaa.mvvm.models.Movie;
 import com.bahaa.mvvm.ui.fragment.adapter.movieAdapter.MovieAdapter;
 import com.bahaa.mvvm.ui.fragment.base.BaseFragment;
+import com.bahaa.mvvm.util.AppUtils;
 
 import java.util.List;
 
@@ -40,8 +41,8 @@ public class HomeFragment extends BaseFragment implements MovieAdapter.OnMovieCl
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         fragmentHomeBinding.setHomeViewModle(homeViewModel);
-        initVerticalRV(fragmentHomeBinding.recyclerMovies, 1, 10);
-        movieAdapter = new MovieAdapter(this);
+        AppUtils.initVerticalRV(getContext(),fragmentHomeBinding.recyclerMovies, 1, 10);
+        movieAdapter = new MovieAdapter(this,R.layout.item_movie);
         fragmentHomeBinding.recyclerMovies.setAdapter(movieAdapter);
         homeViewModel.moviesResponseMutableLiveData.observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override

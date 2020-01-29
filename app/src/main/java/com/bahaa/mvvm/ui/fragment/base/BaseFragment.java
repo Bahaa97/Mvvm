@@ -80,17 +80,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-    public GridLayoutManager initVerticalRV(RecyclerView recyclerView, int spanCount, int space) {
-        return activity.initVerticalRV(recyclerView, spanCount, space);
-    }
-
-    public GridLayoutManager initHorizontalRV(RecyclerView recyclerView, int spanCount) {
-        return activity.initHorizontalRV(recyclerView, spanCount);
-    }
-    public LinearLayoutManager initVerticalLinearRV(RecyclerView recyclerView, int spanCount) {
-        return activity.initVerticalRVLinear(recyclerView, spanCount);
-    }
-
     public ProgressDialog showProgressDialog() {
         return activity.showProgressDialog();
     }
