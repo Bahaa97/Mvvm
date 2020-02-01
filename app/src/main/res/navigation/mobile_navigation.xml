@@ -62,5 +62,14 @@
         android:id="@+id/movieDetailsFragment"
         android:name="com.bahaa.mvvm.ui.fragment.movieDetails.MovieDetailsFragment"
         android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details" >
+
+        <action
+            android:id="@+id/action_movieDetailsFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_up"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
+    </fragment>
 </navigation>

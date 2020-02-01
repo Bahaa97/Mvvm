@@ -65,6 +65,6 @@ public class MovieDetailsFragment extends BaseFragment implements MovieAdapter.O
     public void onMovieClickListener(Movie movie) {
         Bundle bundle = new Bundle();
         bundle.putString("id",movie.getId().toString());
-        navigateWithBundle(fragmentMovieDetailsBinding.getRoot(),bundle,R.id.movieDetailsFragment);
+        navigateWithBundle(fragmentMovieDetailsBinding.getRoot(),bundle,R.id.action_movieDetailsFragment_to_movieDetailsFragment);
     }
 }
